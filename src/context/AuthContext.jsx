@@ -1,62 +1,57 @@
 "use client";
-import React, { createContext, useEffect, useContext, useState, useReducer } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-require('dotenv').config({ path: '../../backend/.env' });
+
+import { createContext, useEffect, useReducer, useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
 
 const InitialState = {
-    isAuthenticated: false,
-    user: null
+  isAuthenticated: false,
+  user: null
 };
 
 export const reducer = (state, action) => {
-    switch (action.type) {
-        case 'LOGIN':
-            return { isAuthenticated: true, user: action.payload };
-        case 'LOGOUT':
-            return { isAuthenticated: false, user: null };
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case "LOGIN":
+      return { isAuthenticated: true, user: action.payload };
+    case "LOGOUT":
+      return { isAuthenticated: false, user: null };
+    default:
+      return state;
+  }
 };
 
 export const AuthContext = createContext({
-    state: InitialState,
-    dispatch: () => null
+  state: InitialState,
+  dispatch: () => null,
 });
 
 export function AuthProvider({ children }) {
-    const path = usePathname();
-    const router = useRouter();
-    const [state, dispatch] = useReducer(reducer, InitialState);
+  const router = useRouter();
+  const path = usePathname();
+  const [state, dispatch] = useReducer(reducer, InitialState);
 
-    const [authToken, setAuthToken] = useState(null);
-    const [error, setError] = useState(null);
+  // ✅ auth token only set inside useEffect
+  useEffect(() => {
+    if (typeof window === "undefined") return; // ensure client only
 
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            
-            const tokens = document.cookie.split('token=').pop().split(';').shift();
-            setAuthToken(tokens ? tokens : null);
-            if (authToken) {
-                dispatch({ type: 'LOGIN', payload: tokens });
-            }
-            if (!tokens) {
-                if (path === '/'){
-                    document.cookie = ''
-                    router.push('/login');
-                    dispatch({ type: 'LOGOUT' });
-                }
-            }
-        }
-    }, [authToken]);
+    const token = document.cookie.includes("token=")
+      ? document.cookie.split("token=").pop().split(";")[0]
+      : null;
 
-    console.log('AuthContext state:', state);
+    if (token) {
+      dispatch({ type: "LOGIN", payload: token });
+    } else {
+      if (path === "/") {
+        router.push("/login");
+        dispatch({ type: "LOGOUT" });
+      }
+    }
+  }, [path, router]);
 
-    return (
-        <AuthContext.Provider value={{ state, dispatch }}>
-            {children}
-        </AuthContext.Provider>
-    );
+  return (
+    <AuthContext.Provider value={{ state, dispatch }}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
 export default AuthContext;
