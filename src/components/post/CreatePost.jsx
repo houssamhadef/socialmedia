@@ -3,20 +3,28 @@ import Imagee from "next/image";
 import profile from "../../../public/images/profile.jpg";
 import { Image } from "lucide-react";
 import { usePost } from "../../hooks/usePost";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFile } from "@/hooks/useFile";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
-const token = document.cookie.split("token=").pop().split(";").shift();
+
 const {uploadFile} = useFile()
 
 
 const CreatePost = ({avatar}) => {
+
+    
     const [files, setFiles] = useState([])
     const router = useRouter();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const { CreatePost } = usePost();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const token = document.cookie.split("token=").pop().split(";").shift();
+    }
+  }, [])
 
   const AppendImage = (file, img) => {
     const imagediv = document.getElementById("imagediv");

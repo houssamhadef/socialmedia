@@ -3,7 +3,6 @@ import {useState, useEffect} from 'react'
 import { useParams, useRouter } from 'next/navigation';
 import ProfileHeader from '@components/profile/ProfileHeader'
 import Navbar from '@/components/navbar';
-import { VerifyToken } from "../../../utils/VerifyToken";
 import {useUser} from '@/hooks/useUser'
 export default function Profile(){
     const router = useRouter()

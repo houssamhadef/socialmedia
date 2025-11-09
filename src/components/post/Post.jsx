@@ -1,3 +1,4 @@
+"use client";
 import Time from "react-time-ago";
 import JavascriptTimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
