@@ -37,7 +37,7 @@ const Post = ({
 
         {PostAttachements &&
           PostAttachements.map((attachment, index) => (
-            <div className="w-1/2 md:w-1/3 lg:w-1/4 p-1">
+            <div key={index + 1} className="w-1/2 md:w-1/3 lg:w-1/4 p-1">
             <img
               key={index}
 

