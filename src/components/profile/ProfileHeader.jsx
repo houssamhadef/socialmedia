@@ -32,7 +32,11 @@ useEffect(() => {
 }
 }, []);
 
-  const token = document.cookie.split("token=").pop().split(";").shift();
+ useEffect(() => {
+  if (typeof window !== "undefined") {
+     const token = document.cookie.split("token=").pop().split(";").shift();
+  }
+ }, [])
 
   const UpdatePfp = (e) => {
     let file = e.target.files[0];

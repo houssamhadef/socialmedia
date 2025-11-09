@@ -8,7 +8,11 @@ import {useUser} from '@/hooks/useUser'
 export default function Profile(){
     const router = useRouter()
     const {getUser} = useUser()
-    const token = document.cookie.split('token=').pop().split(';').shift();
+     useEffect(() => {
+  if (typeof window !== "undefined") {
+     const token = document.cookie.split("token=").pop().split(";").shift();
+  }
+ }, [])
     
    
     const {username} = useParams()
