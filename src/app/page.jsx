@@ -21,7 +21,7 @@ export default function Home() {
   const [Loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    if (typeof document !== "undefined") {
+    if (typeof window !== "undefined") {
       const token = document.cookie.split("token=").pop().split(";").shift();
       setToken(token);
     }
