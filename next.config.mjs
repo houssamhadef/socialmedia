@@ -4,7 +4,7 @@ import { config } from 'process';
 const nextConfig = {
    eslint: {
       ignoreDuringBuilds: true,
-   }
+   },
    images: {
     domains: ['slayerdev056792.s3.amazonaws.com', 'localhost', '41.98.114.72']
    },
