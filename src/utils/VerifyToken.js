@@ -1,4 +1,3 @@
-import jwt from "jsonwebtoken";
 
 export async function VerifyToken(token) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_END_POINT}:5000/api/v1/token/verify`, {
