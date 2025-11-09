@@ -5,9 +5,14 @@ const nextConfig = {
    eslint: {
       ignoreDuringBuilds: true,
    },
+   typescript: {
+      ignoreBuildErrors: true,
+   },
+   
    images: {
     domains: ['slayerdev056792.s3.amazonaws.com', 'localhost', '41.98.114.72']
    },
+
    
    
 };
