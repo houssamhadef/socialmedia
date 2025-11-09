@@ -1,6 +1,5 @@
 "use client";
 import React, { createContext, useEffect, useContext, useState, useReducer } from 'react';
-import jwtDecode from 'jwt-decode';
 import { useRouter, usePathname } from 'next/navigation';
 require('dotenv').config({ path: '../../backend/.env' });
 
